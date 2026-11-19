@@ -2,7 +2,7 @@
 
 A responsive party game you play by passing a phone around (or around one laptop). Answer the question honestly, or take a drink. It's built from the rules and the full card list of Cut's *Truth or Drink* printable PDF:
 
-- **396 question cards** across four sets of rising intensity: Happy Hour → On the Rocks → Last Call → Extra Dirty (18+)
+- **395 unique question cards** across four sets of rising intensity: Happy Hour → On the Rocks → Last Call → Extra Dirty (18+)
 - **Buy a Round** cards, the three card types (Straight Up · Make It a Double · This Round's On Me), and the serving suggestions
 - **Head-to-head mode** for 2 players, with 10-card rounds
 - **Group mode** for 3 or more players: draw 2 and ask 1, points, a win target, and Buy a Round
@@ -105,7 +105,7 @@ src/
   icons.js              Inline SVG icons (set icons + UI)
   styles.css            Design tokens + all styles (mobile-first)
   data/
-    cards.js            All 396 question cards, transcribed from the PDF
+    cards.js            All 395 unique question cards from the PDF
     rules.js            Sets, card types, Buy a Round, serving suggestions, rules text
 scripts/
   serve.mjs             Zero-dependency static dev server

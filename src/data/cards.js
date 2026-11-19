@@ -1,5 +1,6 @@
 // AUTO-GENERATED from Truth_or_Drink_Cut.pdf by transcription — see docs/DECK_AUDIT.md.
-// Every question card in the PDF is listed here, in print order (page, row, column).
+// Every question card in the PDF is listed here, in print order (page, row, column),
+// except one exact duplicate (see the note in the last-call section). All 395 texts are unique.
 // `*word*` marks words printed in italics on the card. `note` is an instruction printed
 // in light italics for the asker (read silently / perform before asking).
 
@@ -208,7 +209,8 @@ export const CARDS = [
   {"id": "otr-097", "set": "on-the-rocks", "type": "straight-up", "text": "What would you never hire me to do?", "src": "p13 r3 c1"},
   {"id": "otr-098", "set": "on-the-rocks", "type": "straight-up", "text": "Describe a time when you really disappointed someone. Did you ever earn back their trust?", "src": "p13 r3 c2"},
   {"id": "otr-099", "set": "on-the-rocks", "type": "double", "text": "If I were a chain restaurant, which one would I be and why?", "src": "p13 r3 c3"},
-  // ── last-call (99 cards) ──
+  // ── last-call (98 cards) ──
+  // lc-031 (p18 r2 c1) intentionally omitted: it is a word-for-word reprint of lc-030 in the PDF.
   {"id": "lc-001", "set": "last-call", "type": "straight-up", "text": "What problem do I think I’m successfully hiding from everyone, but is actually completely obvious?", "src": "p15 r1 c1"},
   {"id": "lc-002", "set": "last-call", "type": "double", "text": "Tell us about a loophole you exploited until you got caught.", "src": "p15 r1 c2"},
   {"id": "lc-003", "set": "last-call", "type": "straight-up", "text": "How many kids is too many kids? How many will you have?", "src": "p15 r1 c3"},
@@ -239,7 +241,6 @@ export const CARDS = [
   {"id": "lc-028", "set": "last-call", "type": "straight-up", "text": "When do I demand the most attention?", "src": "p18 r1 c1"},
   {"id": "lc-029", "set": "last-call", "type": "double", "text": "What’s your greatest moment of telling someone off? Can you reenact it for us?", "src": "p18 r1 c2"},
   {"id": "lc-030", "set": "last-call", "type": "straight-up", "text": "Have you ever had to apologize to someone for my behavior? Did the person accept the apology?", "src": "p18 r1 c3"},
-  {"id": "lc-031", "set": "last-call", "type": "straight-up", "text": "Have you ever had to apologize to someone for my behavior? Did the person accept the apology?", "src": "p18 r2 c1"},
   {"id": "lc-032", "set": "last-call", "type": "straight-up", "text": "Describe a time you lost a little bit of respect for me.", "src": "p18 r2 c2"},
   {"id": "lc-033", "set": "last-call", "type": "straight-up", "text": "What’s a fact I can never seem to remember about you?", "src": "p18 r2 c3"},
   {"id": "lc-034", "set": "last-call", "type": "straight-up", "text": "What’s something that’s definitely not my problem, but somehow always becomes my problem?", "src": "p18 r3 c1"},

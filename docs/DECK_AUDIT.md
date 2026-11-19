@@ -10,7 +10,7 @@ Source: `Truth_or_Drink_Cut.pdf` (52 A4 pages, InDesign export, Feb 2022). This 
 | 2 | Cutting template and printing notes | Not gameplay, so not used |
 | 3–13 | **On the Rocks**, 99 cards | Card faces, 9 per page |
 | 14 | On the Rocks card backs | Image only |
-| 15–25 | **Last Call**, 99 cards | |
+| 15–25 | **Last Call**, 99 printed, 98 unique | One card is printed twice (see below) |
 | 26 | Last Call backs | Image only |
 | 27–37 | **Happy Hour**, 99 cards | |
 | 38 | Happy Hour backs | Image only |
@@ -21,7 +21,7 @@ Source: `Truth_or_Drink_Cut.pdf` (52 A4 pages, InDesign export, Feb 2022). This 
 
 ## Totals
 
-- **Question cards: 396** (99 in each of the 4 sets). All of them are in `src/data/cards.js`. Each card's `src` field gives its page, row and column in the PDF.
+- **Question cards: 396 printed, 395 unique.** All 395 unique cards are in `src/data/cards.js`. Each card's `src` field gives its page, row and column in the PDF.
 - **Buy a Round cards: 9.** They are all the same, so the app models them as a count (`BUY_A_ROUND` in `src/data/rules.js`).
 - **Rules: 27 statements.** 6 for 2 players, 6 for 3+ players, 5 for Straight Up, 4 for Make It a Double, 4 for This Round's On Me, 1 for Buy a Round, and the line about playing without booze. There are also 3 serving-suggestion tiers and the 4 set descriptions. They live in `src/data/rules.js`.
 
@@ -29,7 +29,7 @@ Source: `Truth_or_Drink_Cut.pdf` (52 A4 pages, InDesign export, Feb 2022). This 
 |---|---|---|---|---|
 | Happy Hour | 60 | 20 | 19 | 99 |
 | On the Rocks | 64 | 20 | 15 | 99 |
-| Last Call | 67 | 16 | 16 | 99 |
+| Last Call | 66 | 16 | 16 | 98 |
 | Extra Dirty | 59 | 16 | 24 | 99 |
 
 ## Method
@@ -39,15 +39,18 @@ Source: `Truth_or_Drink_Cut.pdf` (52 A4 pages, InDesign export, Feb 2022). This 
 3. Card types come from the coloured tag text on each card: STRAIGHT UP, MAKE IT A DOUBLE or THIS ROUND'S ON ME.
 4. Line breaks were joined back into sentences. Curly quotes, apostrophes and em dashes were kept as printed.
 5. Pages 3, 18 and 39 were checked by eye against rendered images of the pages.
+6. **Second, independent check.** All 396 cells were extracted again with a different tool (pdfplumber, rebuilding each card character by character from its font and position) and compared with `cards.js`. Set, card type and wording matched on every card. The only difference was the overprinted card on p.4 (item 1 below), where both printed layers read in full.
+7. **Rules check.** All 40 rule strings in `rules.js` were compared with the text of page 1. 34 match word for word. 3 are the deliberate rewordings in item 6 below. The other 3 are the Buy a Round card text, which is an image on p.51 and was checked by eye.
+8. **Duplicate check.** Every pair of cards was compared. There is exactly one word-for-word duplicate (item 2 below). The closest other pairs are deliberate mirror questions, such as *"Tell us about a time you were shot down romantically"* and *"…you shot someone down romantically"*. They are different cards and both are kept.
 
 ## Items needing judgement
 
-1. **p.4, row 2, col 1 (On the Rocks, `otr-013`).** The text overprints itself in the PDF. The last line is drawn twice and partly clipped, so the text layer reads as a jumble. From the rendered page it was transcribed as: *"What's something you understand about your parents now that you're grown up? Do they know you know?"* The type is Straight Up. The final sentence is the least certain part.
-2. **p.18 (Last Call, `lc-030` and `lc-031`).** *"Have you ever had to apologize to someone for my behavior? Did the person accept the apology?"* is printed **twice**, in two neighbouring cells. Both copies are kept so the deck matches the PDF. Untick one in a future edit if you'd rather it came up only once.
+1. **p.4, row 2, col 1 (On the Rocks, `otr-013`).** The text overprints itself in the PDF. The last line is drawn twice and partly clipped, so the text layer reads as a jumble. The independent character-level check found the full text printed twice, one copy on top of the other, and both copies read the same: *"What's something you understand about your parents now that you're grown up? Do they know you know?"* The type label is doubled the same way (Straight Up). The transcription is confirmed.
+2. **p.18 (Last Call, `lc-030` and `lc-031`).** *"Have you ever had to apologize to someone for my behavior? Did the person accept the apology?"* is printed **twice**, in two neighbouring cells, with the same wording and type. Only the first copy (`lc-030`) is in the game, so every card in the deck is different. That leaves Last Call with 98 cards.
 3. **p.27 (Happy Hour, `hh-005`).** The line *"Close your eyes before asking this question:"* is printed in light italics as an instruction to the person asking. It is stored as the card's `note` and shown in grey italics above the question *"What color are my eyes?"*
 4. **Italic emphasis.** Four cards print a word or phrase in bold italics. These are marked `*like this*` in the data and shown in italics: `otr-036` *still*, `hh-017` *know*, `hh-067` *something* and `xd-004` *public health reasons?*
 5. **Fill-in-the-blank (p.37, `hh-093`).** *"Fill in the blank: I don't care if _________ is for kids…"* The blank is kept as printed underscores.
-6. **The rules page says "See below" and "at right".** These refer to the page layout, so the app says "the serving suggestions" instead.
+6. **The rules page says "See below", "on the next page" and "at right".** These refer to the page layout, so the app says "the serving suggestions" instead.
 
 ## Rule interpretations (gaps in the printed rules)
 
