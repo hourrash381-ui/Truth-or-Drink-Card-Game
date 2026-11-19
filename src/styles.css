@@ -1,5 +1,6 @@
 /* Truth or Drink — styles
-   Tokens are lifted from the printed game: set colours, the rainbow header border,
+   Tokens are lifted from the printed game: set colours on a dark bar-room ground with a
+   single champagne-gold accent,
    heavy geometric caps for labels, and bold black-on-white question cards. */
 
 :root {
@@ -24,8 +25,10 @@
   --drink-bg: #ee2297;
   --drink-fg: #ffffff;
 
-  --rainbow: linear-gradient(90deg, #7b3cff 0%, #ee2297 35%, #ffc400 68%, #1e9de0 100%);
-  --rainbow-diag: linear-gradient(135deg, #7b3cff 0%, #ee2297 35%, #ffc400 68%, #1e9de0 100%);
+  /* one warm metallic accent (think brass bar fittings) instead of a multi-colour gradient */
+  --accent: #d6b36e;
+  --accent-soft: rgba(214, 179, 110, .14);
+  --mixed-back: #23232a;
 
   --font-display: 'Archivo', 'Arial Black', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -56,7 +59,7 @@ body {
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .45; }
-:focus-visible { outline: 3px solid #ffc400; outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 [hidden] { display: none !important; }
 
 /* ───────────── wordmark ───────────── */
@@ -100,7 +103,8 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   position: absolute;
   inset: auto 0 0 0;
   height: 3px;
-  background: var(--rainbow);
+  background: var(--accent);
+  opacity: .55;
 }
 .topbar__logo { min-width: 0; color: var(--text); text-decoration: none; font-size: clamp(11px, 3.4vw, 15px); }
 .topbar__nav { display: flex; gap: 0; flex: none; }
@@ -163,8 +167,7 @@ body.in-game .site-foot { display: none; }
   font: 900 15px/1.2 var(--font-display);
   letter-spacing: .06em;
   text-transform: uppercase;
-  border-bottom: 3px solid transparent;
-  border-image: var(--rainbow) 1;
+  border-bottom: 2px solid var(--accent);
 }
 .mini-title {
   margin: 0 0 8px;
@@ -272,7 +275,7 @@ body.in-game .site-foot { display: none; }
 .chip--radio { cursor: pointer; }
 .chip--radio input { position: absolute; opacity: 0; pointer-events: none; }
 .chip--radio:has(input:checked) { border-color: var(--set, var(--text)); color: var(--text); background: color-mix(in srgb, var(--set, #fff) 18%, var(--surface)); }
-.chip--radio:has(input:focus-visible) { outline: 3px solid #ffc400; outline-offset: 2px; }
+.chip--radio:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
 .chip--radio svg { color: var(--set, currentColor); }
 .chip--buy { border-color: var(--buy); color: var(--text); }
 .chip--buy:hover { background: var(--buy); }
@@ -332,7 +335,7 @@ body.in-game .site-foot { display: none; }
 .hero__logo { margin: 10px 0 12px; font-size: clamp(24px, 8.2vw, 76px); line-height: 1; }
 .hero__logo .wordmark { border-width: max(3px, .07em); max-width: 100%; }
 .hero__lede { margin: 0; font: 700 clamp(17px, 4.4vw, 22px)/1.3 var(--font-display); }
-.hero__lede span { background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero__lede span { color: var(--accent); }
 
 .setup__grid { display: grid; gap: 16px; }
 @media (min-width: 900px) { .setup__grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; } }
@@ -415,7 +418,7 @@ body.in-game .site-foot { display: none; }
 /* ───────────── game layout ───────────── */
 .turn-banner { margin: 0 0 16px; }
 .turn-banner__h { margin: 4px 0 0; font: 900 clamp(22px, 6vw, 34px)/1.12 var(--font-display); letter-spacing: -.01em; }
-.who { background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.who { color: var(--accent); }
 .result { min-height: 1.5em; margin: 8px 0 0; font-weight: 700; font-size: 15px; color: var(--muted); }
 .result:empty { display: none; }
 .result--truth { color: var(--text); }
@@ -517,6 +520,8 @@ body.in-game .site-foot { display: none; }
   color: #fff;
   font-size: 7.2cqi;
 }
+.card-back--mixed .card-back__art { border-color: var(--accent); color: var(--accent); }
+.card-back--mixed .card-back__art .wordmark { background: var(--bg); }
 .card-back__art .wordmark { background: rgba(13, 13, 15, .85); border-width: .5cqi; }
 
 /* flip-in animation */
@@ -593,7 +598,7 @@ body.in-game .site-foot { display: none; }
 .empty p { margin: 0; color: var(--muted); }
 .empty .empty__h { color: var(--text); font: 900 24px/1.15 var(--font-display); }
 .empty .row-btns { margin-top: 12px; }
-.empty--round svg { color: #ffc400; width: 44px; height: 44px; }
+.empty--round svg { color: var(--accent); width: 44px; height: 44px; }
 .duo-tally { font-size: 14px; }
 
 /* ───────────── ask panel ───────────── */
@@ -650,10 +655,10 @@ body.in-game .site-foot { display: none; }
   border: 2px solid transparent;
 }
 .game--duo .score__p { grid-template-columns: minmax(0, 1fr) auto auto; }
-.score__p.is-turn { border-image: var(--rainbow) 1; border-radius: 0; background: var(--surface-2); }
+.score__p.is-turn { border-color: var(--accent); background: var(--accent-soft); }
 .score__name { min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .score__name small { margin-left: 8px; color: var(--muted); font: 800 10px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; }
-.score__p.is-lead .score__name::after { content: ' ★'; color: #ffc400; }
+.score__p.is-lead .score__name::after { content: ' ★'; color: var(--accent); }
 .score__pts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 3px; max-width: 120px; }
 .pt { display: block; width: 10px; height: 14px; border-radius: 2px; background: var(--set); }
 .pt--empty { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); }
@@ -721,7 +726,7 @@ body.in-game .site-foot { display: none; }
 .set-list li svg { flex: none; margin-top: 2px; }
 .set-list b { display: block; font: 900 13px/1.3 var(--font-display); letter-spacing: .12em; text-transform: uppercase; }
 .set-list span { display: block; color: var(--text); font-size: 14px; }
-.no-booze { margin: 0 0 22px; padding: 14px 16px; border: 2px solid transparent; border-image: var(--rainbow) 1; font-style: italic; text-align: center; }
+.no-booze { margin: 0 0 22px; padding: 14px 16px; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent); color: var(--accent); font-style: italic; text-align: center; }
 
 .custom textarea { resize: vertical; min-height: 96px; line-height: 1.4; }
 .check { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font-weight: 500; }
@@ -746,12 +751,12 @@ body.in-game .site-foot { display: none; }
 .menu-btns { display: grid; gap: 8px; margin: 18px 0; }
 .log { margin: 0; padding-left: 20px; display: grid; gap: 4px; color: var(--muted); font-size: 13px; }
 
-.dlg--win { max-width: 440px; border: 3px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--rainbow-diag) border-box; }
+.dlg--win { max-width: 440px; border: 2px solid var(--accent); }
 @media (max-width: 600px) { .dlg--win { margin: auto; width: calc(100% - 32px); border-radius: 20px; } }
 .winner { text-align: center; padding: 28px 22px 22px; }
-.winner__icon { color: #ffc400; }
+.winner__icon { color: var(--accent); }
 .winner__icon svg { width: 56px; height: 56px; }
-.winner h2 { margin: 6px 0; font: 900 clamp(30px, 9vw, 44px)/1.05 var(--font-display); background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.winner h2 { margin: 6px 0; font: 900 clamp(30px, 9vw, 44px)/1.05 var(--font-display); color: var(--accent); }
 .winner__sub { margin: 0 0 16px; color: var(--muted); }
 .winner__sub b { color: var(--text); }
 .ranking { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 4px; text-align: left; counter-reset: r; }

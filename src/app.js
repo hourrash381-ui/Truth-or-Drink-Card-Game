@@ -90,8 +90,9 @@ function cardFront(card, { type, boughtBy, mode, compact = false } = {}) {
 }
 
 function cardBack(setId) {
-  const color = setId === 'all' ? 'var(--rainbow)' : setById(setId).color;
-  return `<div class="card-back" style="--set:${color}"><div class="card-back__art">${LOGO}</div></div>`;
+  const mixed = setId === 'all';
+  const color = mixed ? 'var(--mixed-back)' : setById(setId).color;
+  return `<div class="card-back${mixed ? ' card-back--mixed' : ''}" style="--set:${color}"><div class="card-back__art">${LOGO}</div></div>`;
 }
 
 function flipCard(card, opts) {
