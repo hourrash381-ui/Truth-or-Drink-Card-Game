@@ -736,7 +736,7 @@ const handlers = {
   'deck-draw-two': () => act((g) => G.updateSettings(g, { drawTwo: !g.settings.drawTwo })),
   'remove-player': (el) => {
     const p = G.player(app.game, el.dataset.pid);
-    if (p && window.confirm(`Remove ${p.name} from the game?`)) act((g) => G.removePlayer(g, el.dataset.pid));
+    if (p) askConfirm(`Remove ${p.name} from the game?`, 'Remove', () => act((g) => G.removePlayer(g, el.dataset.pid)));
   },
   restart: () => {
     const g = app.game;
@@ -752,14 +752,8 @@ const handlers = {
   },
   'end-game': () => {
     const g = app.game;
-    if (!g || !window.confirm('End this game? Scores will be cleared.')) return;
-    app.setup.names = g.players.map((p) => p.name);
-    app.setup.settings = { ...app.setup.settings, ...g.settings };
-    app.game = null;
-    app.undo = [];
-    $('#dlg-menu')?.close();
-    persist();
-    render();
+    if (!g) return;
+    askConfirm('End this game? Scores will be cleared.', 'End game', () => endGame(g));
   },
   'delete-custom': (el) => {
     const id = el.dataset.id;
@@ -769,6 +763,34 @@ const handlers = {
     refreshOpenDialogs();
   },
 };
+
+function endGame(g) {
+    app.setup.names = g.players.map((p) => p.name);
+    app.setup.settings = { ...app.setup.settings, ...g.settings };
+    app.game = null;
+    app.undo = [];
+    $('#dlg-menu')?.close();
+    persist();
+    render();
+}
+
+/** In-page confirmation (native confirm() is unavailable in some embeds, e.g. Claude artifacts). */
+function askConfirm(text, yesLabel, onYes) {
+  const d = $('#dlg-confirm');
+  d.innerHTML = `
+    <div class="dlg__body confirm">
+      <p class="confirm__q">${esc(text)}</p>
+      <div class="dlg__actions">
+        <button type="button" class="btn btn--light" data-close>Cancel</button>
+        <button type="button" class="btn btn--danger" id="confirm-yes">${esc(yesLabel)}</button>
+      </div>
+    </div>`;
+  d.showModal();
+  $('#confirm-yes').addEventListener('click', () => {
+    d.close();
+    onYes();
+  });
+}
 
 function lockServing() {
   app.setup.settings = effectiveSettings(app.setup.names.filter((x) => x.trim()).length);

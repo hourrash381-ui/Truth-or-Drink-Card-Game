@@ -12,6 +12,7 @@
     "start": "node scripts/serve.mjs",
     "dev": "node scripts/serve.mjs",
     "test": "node --test tests/game.test.mjs",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "build:single": "node scripts/build-single.mjs"
   }
 }

@@ -35,6 +35,14 @@ Then open `http://<your-computer's-LAN-IP>:5173` on each phone.
 
 Any other static server works too, for example `python3 -m http.server`. You can't open `index.html` straight from the file system, because browsers block ES modules on `file://`.
 
+### As a single HTML file (e.g. a Claude artifact)
+
+```bash
+npm run build:single
+```
+
+This writes `dist/truth-or-drink.html`, one self-contained page with all the CSS and JS inlined. It works anywhere that accepts a single HTML file.
+
 ### Tests
 
 ```bash
