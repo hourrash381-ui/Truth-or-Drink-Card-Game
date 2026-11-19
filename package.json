@@ -1,0 +1,17 @@
+{
+  "name": "truth-or-drink-card-game",
+  "version": "1.0.0",
+  "description": "A responsive, pass-the-phone Truth or Drink party game. Static site, no build step.",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/game.test.mjs",
+    "build": "node scripts/build.mjs"
+  }
+}

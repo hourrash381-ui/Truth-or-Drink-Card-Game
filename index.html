@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Truth or Drink</title>
+  <meta name="description" content="A pass-the-phone party game: answer the question honestly, or take a drink. 396 question cards across four sets.">
+  <meta name="theme-color" content="#0d0d0f">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400;1,9..40,700&display=swap">
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="./" class="topbar__logo" id="home-link" aria-label="Truth or Drink">
+      <span class="wordmark">TRUTH<span class="wordmark__or">or</span>DRINK</span>
+    </a>
+    <nav class="topbar__nav" aria-label="Game controls">
+      <button type="button" class="nav-btn" id="btn-undo" hidden aria-label="Undo">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Undo</span>
+      </button>
+      <button type="button" class="nav-btn" id="btn-rules">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h10l4 4v12H5z"/><path d="M14 4v5h5"/><path d="M8.5 13h7M8.5 16.5h5"/></svg><span>Rules</span>
+      </button>
+      <button type="button" class="nav-btn" id="btn-custom">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Card</span>
+      </button>
+      <button type="button" class="nav-btn" id="btn-deck">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="12" height="16" rx="2"/><path d="M5 6v13a2 2 0 0 0 2 2h9"/></svg><span>Deck</span>
+      </button>
+      <button type="button" class="nav-btn" id="btn-menu" hidden>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="app">
+    <noscript><p class="noscript">Truth or Drink needs JavaScript to run.</p></noscript>
+  </main>
+
+  <footer class="site-foot">
+    <p>Fan-made digital table for <em>Truth or Drink</em> by Cut. Play responsibly — it’s okay to play without booze.</p>
+  </footer>
+
+  <dialog id="dlg-rules" class="dlg dlg--wide" aria-label="Rules"></dialog>
+  <dialog id="dlg-custom" class="dlg" aria-label="Add a custom card"></dialog>
+  <dialog id="dlg-deck" class="dlg" aria-label="Deck and filters"></dialog>
+  <dialog id="dlg-menu" class="dlg" aria-label="Game menu"></dialog>
+  <dialog id="dlg-win" class="dlg dlg--win" aria-label="Winner"></dialog>
+</body>
+</html>
